@@ -58,21 +58,26 @@ class MemeGenerator extends Component {
     activeFontSizeId: '',
   }
 
-  onChangeBackgroundImage = event => {
-    this.setState({backgroundImageUrlInput: event.target.value})
+  handleMemeInputs = event => {
+    const {name, value} = event.target
+    this.setState(prevState => ({...prevState, [name]: value}))
   }
 
-  onChangeTopTextInput = event => {
-    this.setState({topTextInput: event.target.value})
-  }
+  // onChangeBackgroundImage = event => {
+  //   this.setState({backgroundImageUrlInput: event.target.value})
+  // }
 
-  onChangeBottomTextInput = event => {
-    this.setState({bottomTextInput: event.target.value})
-  }
+  // onChangeTopTextInput = event => {
+  //   this.setState({topTextInput: event.target.value})
+  // }
 
-  onChangeFontSizeOptionID = event => {
-    this.setState({activeFontSizeOptionId: event.target.value})
-  }
+  // onChangeBottomTextInput = event => {
+  //   this.setState({bottomTextInput: event.target.value})
+  // }
+
+  // onChangeFontSizeOptionID = event => {
+  //   this.setState({activeFontSizeOptionId: event.target.value})
+  // }
 
   onGenerateMeme = event => {
     event.preventDefault()
@@ -103,33 +108,37 @@ class MemeGenerator extends Component {
       <MemeGeneratorForm onSubmit={this.onGenerateMeme}>
         <CustomLabel htmlFor="backgroundImageUrl">Image URL</CustomLabel>
         <CustomInput
+          name="backgroundImageUrlInput"
           type="text"
           id="backgroundImageUrl"
           value={backgroundImageUrlInput}
-          onChange={this.onChangeBackgroundImage}
+          onChange={this.handleMemeInputs}
           placeholder="Enter the Image URL"
         />
         <CustomLabel htmlFor="topText">Top Text</CustomLabel>
         <CustomInput
+          name="topTextInput"
           type="text"
           id="topText"
           value={topTextInput}
-          onChange={this.onChangeTopTextInput}
+          onChange={this.handleMemeInputs}
           placeholder="Enter the Top Text"
         />
         <CustomLabel htmlFor="topText">Bottom Text</CustomLabel>
         <CustomInput
+          name="bottomTextInput"
           type="text"
           id="bottomText"
           value={bottomTextInput}
-          onChange={this.onChangeBottomTextInput}
+          onChange={this.handleMemeInputs}
           placeholder="Enter the Bottom Text"
         />
         <CustomLabel htmlFor="select">Font Size</CustomLabel>
         <CustomSelect
+          name="activeFontSizeOptionId"
           id="select"
           value={activeFontSizeOptionId}
-          onChange={this.onChangeFontSizeOptionID}
+          onChange={this.handleMemeInputs}
         >
           {fontSizesOptionsList.map(eachOption => (
             <CustomOption key={eachOption.optionId} value={eachOption.optionId}>
